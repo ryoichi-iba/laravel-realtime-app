@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\API;
 
-use App\Models\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class UserController extends Controller
 {
@@ -16,6 +18,7 @@ class UserController extends Controller
     {
         return User::all();
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -69,6 +72,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        
+        $user->delete();
+
+        return $user;
     }
 }
+
