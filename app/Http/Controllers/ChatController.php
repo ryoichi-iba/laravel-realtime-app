@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\GreetingSent;
 use Illuminate\Http\Request;
 use App\Events\MessageSent;
 use App\Models\User;
@@ -41,8 +42,20 @@ class ChatController extends Controller
         return response()->json('Message broadcast');
     }
 
-    public function greetReceived(Request $request, User $user )
+    public function greetReceived(Request $request, User $user)
     {
-        return "Greeting {$user->name} from  {$request->user()->name} ";
+        //reveiver
+        //GreetingSent(User $user,$message)
+        //$userのidでprivateChannelを作成 (chat.greet.$id)
+
+        //$userはgreetを押されたユーザー (パラメータでモデルバインディング) 
+        //$requets->user()はgreetを押したユーザー 
+
+        broadcast(new GreetingSent($user, "{$request->user()->name} greet you"));
+        //sender
+        
+        broadcast(new GreetingSent($request->user(), "You greet {$user->name}"));
+
+        return    ":Greeting {$user->name} from  {$request} ";
     }
 }
