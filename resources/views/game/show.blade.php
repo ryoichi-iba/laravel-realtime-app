@@ -34,7 +34,7 @@
                             <select name="" id="" class="custom-select col-auto">
                                 <option selected>Not in</option>
                                 @foreach (range(1,12) as $number)
-                                {{ $number }}
+                                <option>{{ $number }}</option>
                                 @endforeach
                             </select>
                             <hr>
