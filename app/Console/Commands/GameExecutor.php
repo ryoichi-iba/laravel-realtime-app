@@ -22,7 +22,7 @@ class GameExecutor extends Command
      */
     protected $description = 'Start executing the game';
 
-    private $time = 15;
+    private $time = 7;
     /**
      * Create a new command instance.
      *
@@ -52,7 +52,7 @@ class GameExecutor extends Command
                 broadcast(new WinnerNumberGenerated(mt_rand(1,12)));
 
                 sleep(5);
-                $this->time = 15;
+                $this->time = 7;
             }
         
         
